@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        $table->id();
+        $table->string('title');
+        $table->string('description');
+        $table->date('start_date');
+        $table->date('end_date');
+        $table->string('address');
+        $table->unsignedBigInteger('available_seats');
+        $table->unsignedBigInteger('category_id');
+        $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        $table->timestamps();
         });
     }
 

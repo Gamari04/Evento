@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers\admin;
+
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -48,7 +50,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-     return view('admin.location.edit',[ 'Category'=>$category]);
+     return view('admin.category.edit',[ 'category'=>$category]);
         
     }
 
