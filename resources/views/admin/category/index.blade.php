@@ -1,4 +1,4 @@
-@include('admin.header')
+@include('layouts.header')
 <br>
 <h1 style="color: #AF8F66"><i>All Categories</i></h1>
 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #54a054b1 " >
