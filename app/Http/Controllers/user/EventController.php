@@ -15,9 +15,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with('category')->orderBy('created_at','desc')->get();
+        $events = Event::with('category')->get();
         $categories=Category::all();
-        return view('admin.event.index', compact('events','categories'));
+        return view('home', compact('events','categories'));
     }
 
     /**

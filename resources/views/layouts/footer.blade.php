@@ -1,4 +1,4 @@
-<footer id="footer" class="overflow-hidden padding-large">
+<footer id="footer" class="overflow-hidden padding-large pt-5"style="background-color: #d2b48c">
     <div class="container-fluid">
       <div class="row">
         <div class="row d-flex flex-wrap justify-content-between">

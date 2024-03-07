@@ -75,7 +75,7 @@
         <span class="loader-inner"></span>
       </span>
     </div> --}}
-
+{{-- 
     <div class="search-box position-relative overflow-hidden w-100">
       <div class="search-wrap">
         <div class="close-button position-absolute">
@@ -90,7 +90,7 @@
           </svg>
         </form>
       </div>
-    </div> 
+    </div>  --}}
     <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">

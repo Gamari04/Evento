@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\user\EventController;
+use App\Http\Controllers\admin\EventController as AdminEvent;
+use App\Http\Controllers\user\EventController as UserEvent;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
-Route::get('/', function () {
-    return view('home');
-});
-Route::resource('events',EventController::class);
+Route::get('/',[UserEvent::class, 'index']);
+Route::resource('events',AdminEvent::class);
 Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
 });
