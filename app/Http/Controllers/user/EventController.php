@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\user;
 
-use App\Models\Event;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Models\Category;
+use App\Models\Event;
 
 class EventController extends Controller
 {
@@ -13,7 +15,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::with('category')->orderBy('created_at','desc')->get();
+        $categories=Category::all();
+        return view('admin.event.index', compact('events','categories'));
     }
 
     /**
@@ -21,7 +25,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+      
     }
 
     /**
@@ -29,7 +33,9 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $events = Event::create($request->all());
+        $events->addMediaFromRequest('image')->toMediaCollection('images');
+        return redirect()->route('events.index');
     }
 
     /**

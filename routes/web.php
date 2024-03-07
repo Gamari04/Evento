@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\EventController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ Route::get('/admin', function () {
 Route::get('/', function () {
     return view('home');
 });
-
+Route::resource('events',EventController::class);
 Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
 });
