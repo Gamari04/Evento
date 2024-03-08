@@ -206,7 +206,7 @@
                             <h5 class="card-title">{{ $event->title }}</h5>
                             <p class="card-text">{{ $event->description }}</p>
                             <p class="card-text">{{ $event->category->name }}</p>
-                            <a href="" class="btn btn-outline-success btn-sm">Read More</a>
+                            <a href="" class="btn btn-outline-success btn-sm">Reserve Now</a>
                             <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
                         </div>
                     </div>

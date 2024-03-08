@@ -1,4 +1,5 @@
 @include('layouts.header')
+
 <h1 style="color: #AF8F66"><i>All Events</i></h1>
 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #E9967A " >
     Add Project

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\EventController as AdminEvent;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\user\EventController as UserEvent;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::get('/admin', function () {
 });
 Route::get('/',[UserEvent::class, 'index']);
 Route::resource('events',AdminEvent::class);
+Route::resource('users',UserController::class);
 Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
 });
