@@ -15,6 +15,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'reservations');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -48,4 +52,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
 }
