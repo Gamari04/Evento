@@ -22,4 +22,7 @@ class EventController extends Controller
         $events->addMediaFromRequest('image')->toMediaCollection('images');
         return redirect()->route('events.index');
     }
+    public function show(Event $event){
+        return view('details',compact('event'));
+    }
 }

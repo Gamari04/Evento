@@ -10,11 +10,12 @@
 
 </head>
 <body>
+    @include('layouts.nav')
     <div class="container-fluid">
         
         <div class="row">
            
-            <div class="col-md-12" style="background-image: url({{ $event->getFirstMediaUrl() }});background-position: right:20%; height: 682px; ">
+            <div class="col-md-12" style="background-image: url({{ $event->getFirstMediaUrl('images') }});background-position: right:20%; height: 682px; ">
                 
                 <div class="d-flex justify-content-center align-items-center h-100" >
                     <div class="card  text-dark w-50 h-75 "style="background-color:  #E0CBBB; ">
@@ -33,38 +34,22 @@
                             
                                 <p><strong class="text-secondary">Category:</strong> <i>{{ $event->category->name }} </i></p> 
                             
-                            <p><strong class="text-secondary">Address : </strong><i>{{ $event->address }} {{ $artProject->partner->country }} </i> 
+                            <p><strong class="text-secondary">Address : </strong><i>{{ $event->address }}  </i> 
                             </p>
                             
            
-                            <p class="card-text"><strong>Artists : </strong>
-                                @foreach ($usersWithStatusZero as $index => $user)
-                                    <i>{{ $user->name }}</i>
-                                    @if ($index < count($usersWithStatusZero) - 1)
-                                        ,
-                                    @endif
-                                @endforeach
-                            </p>
+                           
                             
                         </div>
-                        <div class="d-flex">
-                            <form action="{{ route('project.edit',$artProject->id) }}" >
-                                @method('PUT')
-                                @csrf
-                                <button type="submit"class="btn btn-default"><i class='fas fa-edit' style='font-size:28px; color:black'></i></button>
-                               </form>
-                        <form action="" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button  class="btn btn-default"><lord-icon src="https://cdn.lordicon.com/skkahier.json" trigger="hover" style="width:30px;height:30px">
-                            </lord-ico></button>
-                        </form>
+                      
+                           
+                           
                     
                      
-                           <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #E9967A " >
-                            assign Artist
+                           <button type="button" class="btn text-dark mx-auto mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #E9967A " >
+                            Reserve Now
                          </button>
-                    </div>
+                    
                     
                 
                     <!-- Modal -->
@@ -76,7 +61,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('assign',$artProject->id) }}" method="POST"
+                                    {{-- <form action="{{ route('assign',$artProject->id) }}" method="POST"
                                         enctype="multipart/form-data" class="shadow p-4 rounded mt-5"
                                         style="width: 90%; max-width: 50rem;">
                                            @csrf
@@ -102,6 +87,20 @@
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary" >Add Artist</button>
                                         </div>
+                                    </form> --}}
+                                    <form method="POST" action="{{ route('reservation', Auth::user()) }}">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label">How Many Tickets You Need ?</label>
+                                            <input type="text" class="form-control border" placeholder="Enter Number of Tickets"
+                                                name="number_ticket">
+                                                
+                                        </div>
+                                        <div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+                                        <input type="hidden" class="form-control" name="event_id" value="{{ $event->id }}">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Buy Now</button>
+                                    </div>
                                     </form>
                                 </div>
                 

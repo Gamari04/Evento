@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\EventController as AdminEvent;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\user\EventController as UserEvent;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::resource('users',UserController::class);
 Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
 });
-
+Route::post('reservation/{user}', [ReservationController::class, 'store'])->name('reservation');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
