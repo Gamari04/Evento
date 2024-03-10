@@ -10,16 +10,7 @@ class ReservationController extends Controller
 {
     public function store(Request $request, User $user)
     {
-        // // Validez les données du formulaire si nécessaire
-
-        // // Créez une nouvelle réservation
         
-        // $reservation->user_id = auth()->user()->id; // ou récupérez l'utilisateur à partir du formulaire
-        // $reservation->event_id = $request->input('event_id');
-        
-
-        // // Redirigez ou retournez une réponse appropriée
-        // return redirect()->route('home')->with('success', 'Réservation effectuée avec succès!');
 
         $event = Event::findOrFail($request->event_id);
         if ($event->available_seats<= 0) {
@@ -33,7 +24,7 @@ class ReservationController extends Controller
             'status' => 1,
             'number_ticket' => $request->input('number_ticket')
         ]]);
-        return redirect()->route('ticket', $request->event_id);
+        return redirect()->back()->with('success', 'Réservation effectuée avec succès!');
 
     }
 
