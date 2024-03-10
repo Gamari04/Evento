@@ -19,6 +19,7 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -30,102 +31,26 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
-{{-- <style>
-  #header {
-  background: url(images/festivalfeat.jpg) center center / cover no-repeat ;
-}
-</style>
-<body>
-@include('layouts.nav')
-     <section id="header" class="jumbotron text-center">
-       <h1 class="display-3">FOREST</h1>
-       <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-     
-  </section>
-    
-  <section id="gallery">
-    <div class="container">
-      <div class="row">
-      <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Sunset</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
-         <a href="" class="btn btn-outline-success btn-sm">Read More</a>
-          <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
-        </div>
-       </div>
-      </div>
-    <div class="col-lg-4 mb-4">
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1516214104703-d870798883c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Sunset</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
-         <a href="" class="btn btn-outline-success btn-sm">Read More</a>
-          <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
-        </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Sunset</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
-         <a href="" class="btn btn-outline-success btn-sm">Read More</a>
-          <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
-        </div>
-       </div>
-      </div>
-    </div>
-  </div>
-  </section>
-   --}}
-{{-- <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center"> --}}
 
-
-<!-- Uncomment below if you prefer to use an image logo -->
-<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-{{-- 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-
-          <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
-
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
-
-         
-          <li><a href="index.html" class="btn mx-auto" style="background-color: #AF8F66">Get Started</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar --> --}}
-
-</div>
 </header><!-- End Header -->
 @include('layouts.nav')
 <!-- ======= Hero Section ======= -->
+<style>
+  html,
+body,
+.intro {
+  height: 100%;
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, .2);
+  border-radius: 2em;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+</style>
 <section id="hero">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
@@ -142,6 +67,36 @@
                             Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut.
                             Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et
                             tempore modi architecto.</p>
+                            <section class="intro" >
+                              <div class="bg-image h-100" >
+                                <div class="mask d-flex align-items-center h-100" style="background-color: rgba(61, 162, 195, 0.1);">
+                                  <div class="container">
+                                    <div class="card mask-custom p-4">
+                                      <div class="card-body">
+                                        <p class="h1 font-weight-bold mb-4 text-white">Discover the Amazing City</p>
+                                        <div class="row justify-content-center">
+                                          <div class="col-md-6 mb-3 mb-md-0">
+                                            <div id="basic" class="form-outline form-white">
+                                              <input type="text" id="form1" class="form-control form-control-lg" />
+                                              <label class="form-label" for="form1">What are you looking for?</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 mb-3 mb-md-0">
+                                            <div id="location" class="form-outline form-white">
+                                              <input type="text" id="form2" class="form-control form-control-lg" />
+                                              <label class="form-label" for="form2">Location</label>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-2">
+                                            <input class="btn  btn-block btn-lg" type="submit" value="Search" style="background-color: #AF8F66"/>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
                         <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"
                             style="background-color: #AF8F66">Read More</a>
                     </div>
@@ -232,7 +187,34 @@
 
 
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+  const basicAutocomplete = document.querySelector('#basic');
+const data = ['Museum', 'Party', 'Restaurant', 'Concert', 'Architecture'];
+const dataFilter = (value) => {
+  return data.filter((item) => {
+    return item.toLowerCase().startsWith(value.toLowerCase());
+  });
+};
+
+new mdb.Autocomplete(basicAutocomplete, {
+  filter: dataFilter
+});
+
+const locationAutocomplete = document.querySelector('#location');
+const dataL = ['Madrid', 'Rome', 'Lisbon', 'Paris', 'London'];
+const dataFilterL = (value) => {
+  return dataL.filter((item) => {
+    return item.toLowerCase().startsWith(value.toLowerCase());
+  });
+};
+
+new mdb.Autocomplete(locationAutocomplete, {
+  filter: dataFilterL
+});
+</script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
