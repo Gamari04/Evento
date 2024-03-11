@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="{{ asset('css/material-dashboard.min.css') }}">
   
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iS6F7lfKvxvW0tT8+P6HxlCyv1b7P+cuY1F/KEL8BlWpTIQGyhlC4iDii" crossorigin="anonymous">
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">

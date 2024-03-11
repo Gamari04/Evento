@@ -48,29 +48,51 @@
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                 <li class="nav-item dropdown">
-                  <a class="nav-link me-4 active dropdown-toggle" href="#billboard" id="dropdownPages" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Home</a><ul class="dropdown-menu list-unstyled" aria-labelledby="dropdownPages">
-                    <li>
-                      <a href="index.html" class="dropdown-item item-anchor">Homepage 1</a>
-                    </li>
-                    <li>
-                      <a href="home2.html" class="dropdown-item item-anchor">Homepage V2 <span class="badge bg-secondary text-dark ms-2">PRO</span></a>
-                    </li>
-                  </ul>
+                  <a class="nav-link me-4 active " href="/"  >Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link me-4" href="#about-us">About Us</a>
                 </li>
-           
+                @if(auth()->user() && auth()->user()->hasRole('organizer'))
                 <li class="nav-item">
-                 
-                    
-                   
+                    <a class="nav-link me-4" href="#about-us">My Events</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-4" href="#about-us">New Event</a>
+                  </li>
+                @endif
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('organizer') }}" id="organizerRequestForm">
+                        @csrf
+                           <button type="submit" class="btn btn-primary" id="submitOrganizerRequest">Became Organizer</button>
+                    </form>
                   
+                    
                 </li>
+             
               </ul>
+              
             </div>
+            
           </div>
         </div>
       </nav> 
-   
+      <div id="successMessage" style="display: none;" class="alert alert-success mt-3">
+        Congratulations! Your request to become an organizer has been successfully submitted. We will review your request soon. Thank you!
+    </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var submitButton = document.getElementById('submitOrganizerRequest');
+            var successMessage = document.getElementById('successMessage');
+            var organizerRequestForm = document.getElementById('organizerRequestForm');
+    
+            submitButton.addEventListener('click', function() {
+                // Affichez le message de réussite
+                successMessage.style.display = 'block';
+                setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 5000);
+            });
+        });
+    </script>

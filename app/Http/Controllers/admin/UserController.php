@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -34,5 +35,37 @@ class UserController extends Controller
         $user->roles()->sync([$request->input('role_id')]);
         $user->update($request->all());
         return redirect()->route('users.index');
+    }
+    public function submitOrganizerRequest()
+    {
+        $user = Auth::user(); 
+        if ($user) {
+            $user->update(['organizer_request_status' => 'pending']);
+    
+        }
+
+        return redirect()->back();
+    }
+    public function showRequests()
+    {
+        $requests = User::where('organizer_request_status', 'pending')->get();
+
+        return view('admin.requestForOrganizer', compact('requests'));
+    }
+    public function AcceptOrganizer($id)
+    {
+        $user = User::findOrFail($id);
+
+         $user->update(['organizer_request_status' => 'accepted']); 
+         $organizerRole = Role::where('name', 'organizer')->first();
+         $user->roles()->attach($organizerRole);
+         return redirect()->back();
+    }
+    public function RejectOrganizer($id)
+    {
+        $user = User::findOrFail($id);
+
+         $user->update(['organizer_request_status' => 'rejected']); 
+         return redirect()->back();
     }
 }

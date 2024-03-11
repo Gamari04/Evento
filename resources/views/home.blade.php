@@ -62,7 +62,7 @@ body,
             <div class="carousel-item active" style="background-image: url(images/festivalfeat.jpg)">
                 <div class="carousel-container">
                     <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Sailor</span></h2>
+                        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Evento</span></h2>
                         <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid.
                             Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut.
                             Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et
@@ -73,21 +73,23 @@ body,
                                   <div class="container">
                                     <div class="card mask-custom p-4">
                                       <div class="card-body">
-                                        <p class="h1 font-weight-bold mb-4 text-white">Discover the Amazing City</p>
+                                   
                                         <div class="row justify-content-center">
                                           <div class="col-md-6 mb-3 mb-md-0">
                                             <div id="basic" class="form-outline form-white">
+                                              <label class="form-label" for="form1">Find An Event?</label>
                                               <input type="text" id="form1" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form1">What are you looking for?</label>
+                                             
                                             </div>
                                           </div>
                                           <div class="col-md-4 mb-3 mb-md-0">
                                             <div id="location" class="form-outline form-white">
+                                              <label class="form-label" for="form2">Category</label>
                                               <input type="text" id="form2" class="form-control form-control-lg" />
-                                              <label class="form-label" for="form2">Location</label>
+                                              
                                             </div>
                                           </div>
-                                          <div class="col-md-2">
+                                          <div class="col-md-2 mt-4 mb-md-0">
                                             <input class="btn  btn-block btn-lg" type="submit" value="Search" style="background-color: #AF8F66"/>
                                           </div>
                                         </div>
@@ -97,8 +99,8 @@ body,
                                 </div>
                               </div>
                             </section>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"
-                            style="background-color: #AF8F66">Read More</a>
+                        {{-- <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                            style="background-color: #AF8F66">Read More</a> --}}
                     </div>
                 </div>
             </div>

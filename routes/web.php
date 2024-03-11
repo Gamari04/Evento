@@ -30,6 +30,10 @@ Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
 });
 Route::post('reservation/{user}', [ReservationController::class, 'store'])->name('reservation');
+Route::post('submit', [UserController::class, 'submitOrganizerRequest'])->name('organizer');
+Route::get('showRequests', [UserController::class, 'showRequests'])->name('requestOrganizer');
+Route::get('AcceptRequests/{id}', [UserController::class, 'AcceptOrganizer'])->name('AcceptOrganizer');
+Route::get('RejectRequests/{id}', [UserController::class, 'RejectOrganizer'])->name('RejectOrganizer');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -31,6 +31,7 @@ class User extends Authenticatable
         'password',
         'profile',
         'status',
+        'organizer_request_status',
     ];
 
     /**
@@ -52,5 +53,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    
+    public function hasRole($role)
+{
+    return $this->roles->contains('name', $role);
+}
 }
