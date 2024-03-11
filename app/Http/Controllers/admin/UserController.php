@@ -71,7 +71,7 @@ class UserController extends Controller
     public function showCreatedEvents($id)
     {
         $user = User::findOrFail($id);
-        $createdEvents = $user->events;
+        $createdEvents = $user->createdEvents;
 
         return view('MyEvents', compact('user', 'createdEvents'));
     }

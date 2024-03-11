@@ -20,6 +20,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Event::class, 'reservations')->withPivot('number_ticket', 'date', 'status');
     }
 
+    public function createdEvents()
+    {
+        return $this->hasMany(Event::class, 'user_id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -34,7 +38,7 @@ class User extends Authenticatable
         'organizer_request_status',
         
     ];
-
+    
     /**
      * The attributes that should be hidden for serialization.
      *
