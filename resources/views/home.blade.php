@@ -51,6 +51,112 @@ body,
   box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
 }
 </style>
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form action="{{ route('events.store') }}" method="post"
+                      enctype="multipart/form-data" class="shadow p-4 rounded mt-5"
+                      style="width: 90%; max-width: 50rem;">
+                         @csrf
+                      <h1 class="text-center pb-5 display-4 fs-3">
+                          Add New Project
+                      </h1>
+  
+                      <div class="mb-3">
+                          <label class="form-label">Project Title</label>
+                          <input type="text" class="form-control border" placeholder="Enter a title"
+                              name="title">
+                              @error('title')
+                                <div class="text-danger">{{ $message }}</div>  
+                              @enderror
+                      </div>
+  
+                      <div class="mb-3">
+                          <label class="form-label"> Project Description</label>
+                      <textarea type="text" class="form-control border" placeholder="Enter a description"
+                              name="description">
+                              @error('description')
+                              <div class="text-danger">{{ $message }}</div>  
+                            @enderror
+                          </textarea>
+  
+                      </div>
+  
+                     <div>
+                      <label for="categories">Sélectionner des partenaires :</label>
+                      <select class="form-control border" name="category_id">
+                          @foreach ($categories as $category)
+                              <option value="{{ $category->id }}" >
+                                  {{ $category->name }}
+                              </option>
+                          @endforeach
+                      </select>
+                  
+                     </div>
+  
+                     
+                      <div class="mb-3">
+                          <label class="form-label">Event address</label>
+                          <input type="text" class="form-control border" placeholder="Enter the author"
+                              name="address">
+                              
+                      </div>
+  
+  
+                 
+  
+                      <div class="mb-3">
+                          <label class="form-label">Date of Start</label>
+                          <input type="date" class="form-control border" placeholder="Enter the year of publication"
+                              name="start_date">
+                              @error('start_date')
+                              <div class="text-danger">{{ $message }}</div>  
+                            @enderror
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Date of End</label>
+                          <input type="date" class="form-control border" placeholder="Enter the year of publication"
+                              name="end_date">
+                              @error('end_date')
+                              <div class="text-danger">{{ $message }}</div>  
+                            @enderror
+                      </div>
+                      <div div class="mb-3">
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label"> Project image </label>
+                          <input type="file" class="form-control border" name="image">
+                          @error('image')
+                          <div class="text-danger">{{ $message }}</div>  
+                        @enderror
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Date of End</label>
+                          <input type="number" class="form-control border" placeholder="Enter the year of publication"
+                              name="available_seats">
+                              @error('available_seats')
+                              <div class="text-danger">{{ $message }}</div>  
+                            @enderror
+                      </div>
+                      
+  
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" >Add Project</button>
+                      </div>
+                  </form>
+              </div>
+  
+          </div>
+      </div>
+  </div>
 <section id="hero">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
@@ -217,6 +323,6 @@ new mdb.Autocomplete(locationAutocomplete, {
   filter: dataFilterL
 });
 </script>
-<script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>

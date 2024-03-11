@@ -34,6 +34,7 @@ Route::post('submit', [UserController::class, 'submitOrganizerRequest'])->name('
 Route::get('showRequests', [UserController::class, 'showRequests'])->name('requestOrganizer');
 Route::get('AcceptRequests/{id}', [UserController::class, 'AcceptOrganizer'])->name('AcceptOrganizer');
 Route::get('RejectRequests/{id}', [UserController::class, 'RejectOrganizer'])->name('RejectOrganizer');
+Route::get('MyEvents/{id}',[UserController::class, 'showCreatedEvents'])->name('MyEvents');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

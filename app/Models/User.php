@@ -32,6 +32,7 @@ class User extends Authenticatable
         'profile',
         'status',
         'organizer_request_status',
+        
     ];
 
     /**
@@ -56,5 +57,9 @@ class User extends Authenticatable
     public function hasRole($role)
 {
     return $this->roles->contains('name', $role);
+}
+public function isUser($role)
+{
+    return $this->roles->contains('name', $role) && $this->roles->count() === 1; 
 }
 }

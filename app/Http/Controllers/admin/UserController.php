@@ -68,4 +68,11 @@ class UserController extends Controller
          $user->update(['organizer_request_status' => 'rejected']); 
          return redirect()->back();
     }
+    public function showCreatedEvents($id)
+    {
+        $user = User::findOrFail($id);
+        $createdEvents = $user->events;
+
+        return view('MyEvents', compact('user', 'createdEvents'));
+    }
 }

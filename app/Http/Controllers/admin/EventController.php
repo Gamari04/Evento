@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -25,4 +26,5 @@ class EventController extends Controller
     public function show(Event $event){
         return view('details',compact('event'));
     }
+  
 }

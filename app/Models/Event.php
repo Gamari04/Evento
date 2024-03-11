@@ -18,7 +18,8 @@ class Event extends Model implements HasMedia
         'end_date',
         'address',
         'available_seats',
-        'category_id'
+        'category_id',
+        'user_id'
     ];
     public function category()
     {
@@ -28,4 +29,7 @@ class Event extends Model implements HasMedia
     {
         return $this->belongsToMany(User::class, 'reservations')->withPivot('number_ticket');
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+     }
 }

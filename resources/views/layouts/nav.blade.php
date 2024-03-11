@@ -55,12 +55,24 @@
                 </li>
                 @if(auth()->user() && auth()->user()->hasRole('organizer'))
                 <li class="nav-item">
-                    <a class="nav-link me-4" href="#about-us">My Events</a>
+                    <a class="nav-link me-4" href="{{ route('MyEvents',auth()->user()->id) }}">My Events</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link me-4" href="#about-us">New Event</a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                        Add Event
+                    </button>
                   </li>
+
+
+                 
+                
+           
+
+
+
+
                 @endif
+                @if(auth()->user() && auth()->user()->isUser('user'))
                 <li class="nav-item">
                     <form method="POST" action="{{ route('organizer') }}" id="organizerRequestForm">
                         @csrf
@@ -69,7 +81,7 @@
                   
                     
                 </li>
-             
+                @endif
               </ul>
               
             </div>
@@ -80,7 +92,7 @@
       <div id="successMessage" style="display: none;" class="alert alert-success mt-3">
         Congratulations! Your request to become an organizer has been successfully submitted. We will review your request soon. Thank you!
     </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      
       <script>
         document.addEventListener('DOMContentLoaded', function() {
             var submitButton = document.getElementById('submitOrganizerRequest');
