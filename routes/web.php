@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
-Route::get('/',[UserEvent::class, 'index']);
-Route::resource('events',AdminEvent::class);
+Route::resource('events',UserEvent::class);
+Route::get('showEvents',[AdminEvent::class,'index'])->name('requestEvents');
 Route::resource('users',UserController::class);
 Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
@@ -34,6 +34,8 @@ Route::post('submit', [UserController::class, 'submitOrganizerRequest'])->name('
 Route::get('showRequests', [UserController::class, 'showRequests'])->name('requestOrganizer');
 Route::get('AcceptRequests/{id}', [UserController::class, 'AcceptOrganizer'])->name('AcceptOrganizer');
 Route::get('RejectRequests/{id}', [UserController::class, 'RejectOrganizer'])->name('RejectOrganizer');
+Route::get('AcceptEvent/{id}', [AdminEvent::class, 'AcceptEvent'])->name('AcceptEvent');
+Route::get('RejectEvent/{id}', [AdminEvent::class, 'RejectEvent'])->name('RejectEvent');
 Route::get('MyEvents/{id}',[UserController::class, 'showCreatedEvents'])->name('MyEvents');
 Route::get('/dashboard', function () {
     return view('dashboard');

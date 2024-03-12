@@ -276,7 +276,7 @@ body,
                     </div>
                 </div>
             @endforeach
-
+{{ $events->links() }}
         </div>
     </div>
 </section>

@@ -13,18 +13,32 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::with('category')->get();
+        $events = Event::with('category')->where('status', 'pending')->get();
         $categories=Category::all();
         return view('admin.event.index', compact('events','categories'));
     }
-    public function store(StoreEventRequest $request)
-    {
-        $events = Event::create($request->all());
-        $events->addMediaFromRequest('image')->toMediaCollection('images');
-        return redirect()->route('events.index');
-    }
+    // public function store(StoreEventRequest $request)
+    // {
+    //     $events = Event::create($request->all());
+    //     $events->addMediaFromRequest('image')->toMediaCollection('images');
+    //     $events->update(['status' => 'pending']);
+    //     return redirect()->route('events.index');
+    // }
     public function show(Event $event){
         return view('details',compact('event'));
     }
-  
+    public function AcceptEvent($id)
+    {
+        $event = Event::findOrFail($id);
+
+        $event->update(['status' => 'accepted']); 
+         return redirect()->back();
+    }
+    public function RejectEvent($id)
+    {
+        $event = Event::findOrFail($id);
+
+        $event->update(['status' => 'rejected']); 
+         return redirect()->back();
+    }
 }

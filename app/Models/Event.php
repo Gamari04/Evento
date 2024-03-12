@@ -19,7 +19,8 @@ class Event extends Model implements HasMedia
         'address',
         'available_seats',
         'category_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
     public function category()
     {

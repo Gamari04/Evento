@@ -15,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with('category')->get();
+        $events = Event::with('category')->where('status', 'accepted')->paginate(6);
         $categories=Category::all();
         return view('home', compact('events','categories'));
     }
@@ -35,7 +35,8 @@ class EventController extends Controller
     {
         $events = Event::create($request->all());
         $events->addMediaFromRequest('image')->toMediaCollection('images');
-        return redirect()->route('events.index');
+        $events->update(['status' => 'pending']);
+        return redirect()->back();
     }
 
     /**
@@ -43,7 +44,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('details',compact('event'));
     }
 
     /**
