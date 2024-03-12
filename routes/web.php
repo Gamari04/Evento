@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+Route::get('/admin', [UserController::class,'statistic']);
 Route::resource('events',UserEvent::class);
 Route::get('showEvents',[AdminEvent::class,'index'])->name('requestEvents');
+
 Route::resource('users',UserController::class);
+
 Route::prefix('admin')->group(function () {
     Route::resource('categories',CategoryController::class);
 });
@@ -36,7 +36,11 @@ Route::get('AcceptRequests/{id}', [UserController::class, 'AcceptOrganizer'])->n
 Route::get('RejectRequests/{id}', [UserController::class, 'RejectOrganizer'])->name('RejectOrganizer');
 Route::get('AcceptEvent/{id}', [AdminEvent::class, 'AcceptEvent'])->name('AcceptEvent');
 Route::get('RejectEvent/{id}', [AdminEvent::class, 'RejectEvent'])->name('RejectEvent');
+Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
 Route::get('MyEvents/{id}',[UserController::class, 'showCreatedEvents'])->name('MyEvents');
+
+Route::get('search',[UserEvent::class,'search']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

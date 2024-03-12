@@ -65,11 +65,11 @@ body,
                       style="width: 90%; max-width: 50rem;">
                          @csrf
                       <h1 class="text-center pb-5 display-4 fs-3">
-                          Add New Project
+                          Add New Event
                       </h1>
   
                       <div class="mb-3">
-                          <label class="form-label">Project Title</label>
+                          <label class="form-label">Event Title</label>
                           <input type="text" class="form-control border" placeholder="Enter a title"
                               name="title">
                               @error('title')
@@ -78,7 +78,7 @@ body,
                       </div>
   
                       <div class="mb-3">
-                          <label class="form-label"> Project Description</label>
+                          <label class="form-label"> Event Description</label>
                       <textarea type="text" class="form-control border" placeholder="Enter a description"
                               name="description">
                               @error('description')
@@ -89,7 +89,7 @@ body,
                       </div>
   
                      <div>
-                      <label for="categories">Sélectionner des partenaires :</label>
+                      <label for="categories">Sélectionner une categorie :</label>
                       <select class="form-control border" name="category_id">
                           @foreach ($categories as $category)
                               <option value="{{ $category->id }}" >
@@ -131,7 +131,7 @@ body,
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                       </div>
                       <div class="mb-3">
-                          <label class="form-label"> Project image </label>
+                          <label class="form-label"> Event image </label>
                           <input type="file" class="form-control border" name="image">
                           @error('image')
                           <div class="text-danger">{{ $message }}</div>  
@@ -184,20 +184,22 @@ body,
                                           <div class="col-md-6 mb-3 mb-md-0">
                                             <div id="basic" class="form-outline form-white">
                                               <label class="form-label" for="form1">Find An Event?</label>
-                                              <input type="text" id="form1" class="form-control form-control-lg" />
+                                              <input type="text" id="search-input" class="form-control form-control-lg" />
                                              
                                             </div>
                                           </div>
                                           <div class="col-md-4 mb-3 mb-md-0">
                                             <div id="location" class="form-outline form-white">
                                               <label class="form-label" for="form2">Category</label>
-                                              <input type="text" id="form2" class="form-control form-control-lg" />
+                                              <select type="text" id="select-cat" class="form-control form-control-lg" >
+                                                @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>                                   
+                                                @endforeach
+                                            </select>
                                               
                                             </div>
                                           </div>
-                                          <div class="col-md-2 mt-4 mb-md-0">
-                                            <input class="btn  btn-block btn-lg" type="submit" value="Search" style="background-color: #AF8F66"/>
-                                          </div>
+                                         
                                         </div>
                                       </div>
                                     </div>
@@ -211,35 +213,8 @@ body,
                 </div>
             </div>
 
-            <!-- Slide 2 -->
-            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
-                <div class="carousel-container">
-                    <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid.
-                            Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut.
-                            Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et
-                            tempore modi architecto.</p>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
-                            More</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
-                <div class="carousel-container">
-                    <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                        <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid.
-                            Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut.
-                            Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et
-                            tempore modi architecto.</p>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
-                            More</a>
-                    </div>
-                </div>
-            </div>
+           
 
         </div>
 
@@ -257,7 +232,7 @@ body,
 
 <section id="gallery">
     <div class="container">
-        <div class="row">
+        <div class="row" id="events-container">
             @foreach ($events as $event)
                 <div class="col-lg-4 mb-4">
                     <div class="card">
@@ -292,7 +267,49 @@ body,
 
 @include('layouts.footer')
 
+<script>
+   const searchInput = document.querySelector('#search-input');
+    const selectCat = document.querySelector('#select-cat');
+    //const searchFrom = document.querySelector('#search-from');
+    //const searchTo = document.querySelector('#search-to');
+    const eventsContainer = document.querySelector('#events-container');
 
+    searchInput.addEventListener('keyup', fetchData);
+    selectCat.addEventListener('change', fetchData);
+  //  selectCat.addEventListener('input', fetchData);
+  //  searchTo.addEventListener('input', fetchData);
+
+    function fetchData() {
+        const selectedOption = selectCat.value;
+        const query = searchInput.value;
+        console.log(selectCat.value,searchInput.value)
+
+        fetch(`/search?query=${query}&category=${selectedOption}`)
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+               // eventsContainer.innerHTML = '';
+                // data.forEach(event => {
+                //     const eventHtml = `
+                //     <div class="swiper-slide col-lg-4 col-md-6 col-sm-12 mt-2">
+                //         <div class="next-event-content">
+                //             <figure class="featured-image">
+                //                 <img src="${event.imageUrl}" alt="event" class="img-fluid d-block" style="height: 260px;">
+                //                 <a href="/events/${event.id}" class="entry-content flex flex-column justify-content-center align-items-center">
+                //                     <h3>${event.title}</h3>
+                //                     <p>${event.place}</p>
+                //                 </a>
+                //             </figure><!-- featured-image -->
+                //         </div><!-- next-event-content -->
+                //     </div>
+                // `;
+                //     eventsContainer.innerHTML += eventHtml;
+                // });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+</script>
 
 <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -322,6 +339,9 @@ const dataFilterL = (value) => {
 new mdb.Autocomplete(locationAutocomplete, {
   filter: dataFilterL
 });
+
+  
+
 </script>
 
 <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>

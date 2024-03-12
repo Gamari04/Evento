@@ -28,9 +28,14 @@
         <td> @foreach ($user->roles as $role)
             {{ $role->name }}
         @endforeach</td></td>
-        <td>{{ $user->status }}</td>
+        <td>  @if ($user->status == 'accepted')
+            <a href="{{ route('BannedUser',$user->id) }}"><span class="badge bg-success">{{ $user->status }}</span></a>
+        @else
+            <span class="badge bg-danger text-dark">{{ $user->status }}</span>
        
-              <!-- <td><button  class="btn btn-default"><a href="edit.php?id=">Edit</a></button></td>-->
+        @endif</td>
+       
+           
               <td>
                 <form action="{{ route('users.edit',$user->id) }}" >
                 @method('PUT')

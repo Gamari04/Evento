@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Category;
 use App\Models\Event;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
@@ -50,9 +51,12 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $categories = Category::all();
+     return view('editEvent',compact('event', 'categories'));
+        
     }
 
     /**
@@ -60,7 +64,13 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $event->update($request->except('image'));
+
+        if ($request->hasFile('image')) {
+            $event->clearMediaCollection('images');
+            $event->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->route('events.index');
     }
 
     /**
@@ -69,5 +79,50 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->query('query');
+        $category = $request->query('category');
+       
+
+
+        $eventsQuery = Event::query();
+
+        if ($query) {
+            $eventsQuery->where(function ($queryBuilder) use ($query) {
+                $queryBuilder->where('title', 'like', "%$query%")
+                    ->orWhere('place', 'like', "%$query%");
+            });
+        }
+
+
+        if ($category && $category != 0) {
+            $eventsQuery->whereHas('category', function ($queryBuilder) use ($category) {
+                $queryBuilder->where('id', $category);
+            });
+        }
+
+      
+        $events = $eventsQuery->get();
+
+        $eventData = [];
+
+        foreach ($events as $event) {
+            $eventData[] = [
+                'id' => $event->id,
+                'title' => $event->title,
+                'place' => $event->place,
+                'imageUrl' =>  $event->getFirstMediaUrl('images'),
+            ];
+        }
+
+        return response()->json($eventData);
+
+
+
+
+
     }
 }

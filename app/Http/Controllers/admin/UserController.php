@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Event;
+use App\Models\Reservation;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -72,7 +75,22 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $createdEvents = $user->createdEvents;
-
+        
         return view('MyEvents', compact('user', 'createdEvents'));
+    }
+    public function statistic()
+    {
+        $totalEvents = Event::count();
+        $totalUsers = User::count();
+        $totalCategories = Category::count();
+        $totalReservations=Reservation::count();
+        return view('admin.dashboard', compact('totalEvents', 'totalUsers','totalCategories','totalReservations'));
+    }
+    public function BannedUser($id)
+    {
+        $user = User::findOrFail($id);
+
+         $user->update(['status' => 'Banned']); 
+         return redirect()->back();
     }
 }

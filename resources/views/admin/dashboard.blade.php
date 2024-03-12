@@ -14,8 +14,8 @@
                                     <i class="material-icons opacity-10">weekend</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <b class="text-sm mb-0 text-capitalize text-primary">Totale Books</b>
-                                    <h4 class="mb-0"> </h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary">Totale Reservations</b>
+                                    <h4 class="mb-0"> {{  $totalReservations }}</h4>
                                 </div>
                             </div>
 
@@ -34,8 +34,8 @@
                                     <i class="material-icons opacity-10">leaderboard</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <b class="text-sm mb-0 text-capitalize text-primary">Today's Users</b >
-                                    <h4 class="mb-0"></h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary">Total Events</b >
+                                    <h4 class="mb-0">{{ $totalEvents }}</h4>
                                 </div>
                             </div>
 
@@ -55,8 +55,8 @@
                                     <i class="material-icons opacity-10">store</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <b class="text-sm mb-0 text-capitalize text-primary ">All The Copies</b>
-                                    <h4 class="mb-0 "></h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary ">Total Categories</b>
+                                    <h4 class="mb-0 ">{{ $totalCategories }}</h4>
                                 </div>
                             </div>
     
@@ -75,8 +75,8 @@
                                     <i class="material-icons opacity-10">person_add</i>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <b class="text-sm mb-0 text-capitalize text-primary ">Available Copies</b>
-                                    <h4 class="mb-0 "></h4>
+                                    <b class="text-sm mb-0 text-capitalize text-primary ">All Users</b>
+                                    <h4 class="mb-0 ">{{  $totalUsers }}</h4>
                                 </div>
                             </div>
     

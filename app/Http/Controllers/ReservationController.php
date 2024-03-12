@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use PDF;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -22,7 +24,7 @@ class ReservationController extends Controller
             return redirect()->back()->with('error', 'Not enough available seats for the requested number of tickets.');
         }
 
-        // Déduction du nombre de tickets réservés du nombre total de sièges disponibles
+       
         $event->available_seats -= $number_of_tickets;
         $event->save();
 
@@ -31,7 +33,9 @@ class ReservationController extends Controller
             'status' => 1,
             'number_ticket' => $number_of_tickets,
         ]]);
+        $pdf = FacadePdf::loadView('document',['event' => $event,'user'=>$user]);
+        return $pdf->download('document.pdf');
 
-        return redirect()->back()->with('success', 'Réservation effectuée avec succès!');
+        //return redirect()->back()->with('success', 'Réservation effectuée avec succès!');
     }
 }
